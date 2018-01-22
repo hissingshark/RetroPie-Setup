@@ -136,8 +136,11 @@ function depends_emulationstation() {
 function sources_emulationstation() {
     local repo="$1"
     local branch="$2"
-    [[ -z "$repo" ]] && repo="https://github.com/RetroPie/EmulationStation"
-    [[ -z "$branch" ]] && branch="stable"
+# TEMPORARY REPLACEMENT WITH OUR OWN REPO AS THE CHANGES HAVEN'T BEEN PUSHED UPSTREAM YET
+#    [[ -z "$repo" ]] && repo="https://github.com/RetroPie/EmulationStation"
+#    [[ -z "$branch" ]] && branch="stable"
+    [[ -z "$repo" ]] && repo="https://github.com/hissingshark/EmulationStation"
+    [[ -z "$branch" ]] && branch="vero4k"
     gitPullOrClone "$md_build" "$repo" "$branch"
 }
 

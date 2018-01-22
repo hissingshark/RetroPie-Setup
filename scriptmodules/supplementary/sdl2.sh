@@ -23,6 +23,7 @@ function get_pkg_ver_sdl2() {
     local ver="$(get_ver_sdl2)+2"
     isPlatform "rpi" && ver+="rpi"
     isPlatform "mali" && ver+="mali"
+    isPlatform "vero4k" && ver+="master"
     echo "$ver"
 }
 
@@ -38,6 +39,7 @@ function depends_sdl2() {
     isPlatform "mali" && depends+=(mali-fbdev)
     isPlatform "kms" && depends+=(libdrm-dev libgbm-dev)
     isPlatform "x11" && depends+=(libpulse-dev)
+    isPlatform "vero4k" && depends=(devscripts debhelper dh-autoreconf libasound2-dev libudev-dev libibus-1.0-dev libdbus-1-dev vero3-userland-dev-osmc)
     getDepends "${depends[@]}"
 }
 
@@ -49,6 +51,7 @@ function sources_sdl2() {
     isPlatform "rpi" && branch="rpi-$ver"
     isPlatform "mali" && branch="mali-$ver"
     isPlatform "kms" && branch="kms-$ver"
+    isPlatform "vero4k" && branch="mali-$ver"
 
     gitPullOrClone "$md_build/$pkg_ver" https://github.com/RetroPie/SDL-mirror.git "$branch"
     cd "$pkg_ver"
