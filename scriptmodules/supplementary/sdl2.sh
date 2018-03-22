@@ -16,14 +16,14 @@ rp_module_section=""
 rp_module_flags=""
 
 function get_ver_sdl2() {
-    echo "2.0.7"
+    echo "2.0.8"
 }
 
 function get_pkg_ver_sdl2() {
     local ver="$(get_ver_sdl2)+2"
     isPlatform "rpi" && ver+="rpi"
     isPlatform "mali" && ver+="mali"
-    isPlatform "vero4k" && ver+="master"
+    isPlatform "vero4k" && ver+="mali"
     echo "$ver"
 }
 
@@ -60,10 +60,10 @@ function sources_sdl2() {
 
 function build_sdl2() {
     cd "$(get_pkg_ver_sdl2)"
-    
+
     # remove harmful (mesa) and un-needed (X11) dependancies from debian package control
     isPlatform "vero4k" && sed -i '/^\s*lib.*x\|mesa/ d' ./debian/control
-    
+
     dpkg-buildpackage
     md_ret_require="$md_build/libsdl2-dev_$(get_pkg_ver_sdl2)_$(get_arch_sdl2).deb"
     local dest="$__tmpdir/archives/$__os_codename/$__platform"
