@@ -90,6 +90,8 @@ function build_mupen64plus() {
     isPlatform "rpi" && params+=("-DUSE_SYSTEM_LIBS=On")
     if isPlatform "rpi3"; then 
         params+=("-DCRC_ARMV8=On")
+    elif isPlatform "vero4k"; then 
+        params+=("-DCRC_ARMV8=On -DUSE_SYSTEM_LIBS=On")
     else
         params+=("-DCRC_OPT=On")
     fi
@@ -134,6 +136,7 @@ function install_mupen64plus() {
             isPlatform "rpi" && params+=("VC=1")
             isPlatform "neon" && params+=("NEON=1")
             isPlatform "x86" && params+=("SSE=SSE2")
+            isPlatform "vero4k" && params+=("HOST_CPU=armv8 USE_GLES=1")
             make -C "$source/projects/unix" PREFIX="$md_inst" OPTFLAGS="$CFLAGS -O3 -flto" "${params[@]}" install
         fi
     done
