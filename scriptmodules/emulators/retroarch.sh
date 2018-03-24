@@ -20,7 +20,7 @@ function depends_retroarch() {
     isPlatform "mali" && depends+=(mali-fbdev)
     isPlatform "x11" && depends+=(libx11-xcb-dev libpulse-dev libavcodec-dev libavformat-dev libavdevice-dev)
     # reset depends to what worked independantly
-    isPlatform "vero4k" && depends=(vero3-userland-dev-osmc libusb-1.0-0-dev)
+    isPlatform "vero4k" && depends+=(vero3-userland-dev-osmc zlib1g-dev libfreetype6-dev)
 
     # only install nvidia-cg-toolkit if it is available (as the non-free repo may not be enabled)
     if isPlatform "x86"; then
@@ -49,7 +49,7 @@ function build_retroarch() {
     isPlatform "kms" && params+=(--enable-kms)
     isPlatform "arm" && params+=(--enable-floathard)
     isPlatform "neon" && params+=(--enable-neon)
-    isPlatform "vero4k" && params+=(--enable-dbus --enable-dbus --enable-libusb --enable-threads --enable-dylib --enable-mali_fbdev --enable-zlib --enable-alsa --enable-freetype)
+    isPlatform "vero4k" && params+=(--enable-dbus --enable-dbus --enable-libusb --enable-threads --enable-dylib --enable-mali_fbdev --enable-zlib --enable-alsa --enable-freetype --disable-x11 --disable-vulkan --with-opengles_libs='-L/opt/vero3/lib')
     ./configure --prefix="$md_inst" "${params[@]}"
     make clean
     make
