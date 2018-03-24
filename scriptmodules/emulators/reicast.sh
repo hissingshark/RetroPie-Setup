@@ -17,7 +17,7 @@ rp_module_section="opt"
 rp_module_flags="!armv6 !mali !kms"
 
 function depends_reicast() {
-    getDepends libsdl1.2-dev python-dev python-pip alsa-oss python-setuptools libevdev-dev
+    getDepends python-dev python-pip alsa-oss python-setuptools libevdev-dev
     pip install evdev
 }
 
