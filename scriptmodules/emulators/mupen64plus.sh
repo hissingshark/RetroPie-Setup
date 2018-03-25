@@ -96,6 +96,8 @@ function build_mupen64plus() {
         params+=("-DCRC_OPT=On")
     fi
     cmake "${params[@]}" ../../src/
+    # currently the build fails due to this missing header... revision number likely a dummy
+    echo '#define PLUGIN_REVISION "6426c87' > ../../src/Revision.h
     make
     popd
 
