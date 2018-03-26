@@ -91,7 +91,7 @@ function build_mupen64plus() {
     if isPlatform "rpi3"; then 
         params+=("-DCRC_ARMV8=On")
     elif isPlatform "vero4k"; then 
-        params+=("-DCRC_ARMV8=On -DGLES2=On -DUSE_SYSTEM_LIBS=On")
+        params+=("-DCRC_ARMV8=On" "-DEGL=On" "-DGLES2=On" "-DUSE_SYSTEM_LIBS=On")
     else
         params+=("-DCRC_OPT=On")
     fi
