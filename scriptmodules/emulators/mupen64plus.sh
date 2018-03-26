@@ -97,7 +97,7 @@ function build_mupen64plus() {
     fi
     cmake "${params[@]}" ../../src/
     # currently the build fails due to this missing header... revision number likely a dummy
-    echo '#define PLUGIN_REVISION "6426c87' > ../../src/Revision.h
+    echo '#define PLUGIN_REVISION "6426c87"' > ../../src/Revision.h
     make
     popd
 
@@ -138,7 +138,7 @@ function install_mupen64plus() {
             isPlatform "rpi" && params+=("VC=1")
             isPlatform "neon" && params+=("NEON=1")
             isPlatform "x86" && params+=("SSE=SSE2")
-            isPlatform "vero4k" && params+=("HOST_CPU=armv8 USE_GLES=1")
+            isPlatform "vero4k" && params+=("HOST_CPU=armv8" "USE_GLES=1")
             make -C "$source/projects/unix" PREFIX="$md_inst" OPTFLAGS="$CFLAGS -O3 -flto" "${params[@]}" install
         fi
     done
