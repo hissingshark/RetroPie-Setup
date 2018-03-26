@@ -39,7 +39,12 @@ function sources_mupen64plus() {
             'ricrpi video-gles2n64'
         )
     elif isPlatform "vero4k"; then
-        repos+=('ricrpi video-gles2n64')
+        repos+=(
+            'ricrpi video-gles2n64'
+            #'mupen64plus video-glide64mk2'
+            #'mupen64plus rsp-cxd4'
+            #'mupen64plus rsp-z64'
+        )
     else
         repos+=(
             'mupen64plus video-glide64mk2'
@@ -115,6 +120,14 @@ function build_mupen64plus() {
             'mupen64plus-video-gles2rice/projects/unix/mupen64plus-video-rice.so'
             'mupen64plus-video-gles2n64/projects/unix/mupen64plus-video-n64.so'
             'mupen64plus-audio-omx/projects/unix/mupen64plus-audio-omx.so'
+        )
+    elif isPlatform "vero4k"; then
+        md_ret_require+=(
+            #'mupen64plus-video-gles2rice/projects/unix/mupen64plus-video-rice.so'
+            'mupen64plus-video-gles2n64/projects/unix/mupen64plus-video-n64.so'
+            #'mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so'
+            #'mupen64plus-rsp-z64/projects/unix/mupen64plus-rsp-z64.so'
+            #'mupen64plus-rsp-cxd4/projects/unix/mupen64plus-rsp-cxd4.so'
         )
     else
         md_ret_require+=(
