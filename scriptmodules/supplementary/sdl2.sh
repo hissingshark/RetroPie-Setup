@@ -20,7 +20,7 @@ function get_ver_sdl2() {
 }
 
 function get_pkg_ver_sdl2() {
-    local ver="$(get_ver_sdl2)+2"
+    local ver="$(get_ver_sdl2)+1"
     isPlatform "rpi" && ver+="rpi"
     isPlatform "mali" && ver+="mali"
     isPlatform "vero4k" && ver+="mali"
@@ -38,7 +38,7 @@ function depends_sdl2() {
     isPlatform "rpi" && depends+=(libraspberrypi-dev)
     isPlatform "mali" && depends+=(mali-fbdev)
     isPlatform "kms" && depends+=(libdrm-dev libgbm-dev)
-    isPlatform "x11" && depends+=(libpulse-dev)
+    isPlatform "x11" && depends+=(libpulse-dev libegl1-mesa-dev libgles2-mesa-dev libglu1-mesa-dev)
     isPlatform "vero4k" && depends=(devscripts debhelper dh-autoreconf libasound2-dev libudev-dev libibus-1.0-dev libdbus-1-dev fcitx-libs-dev vero3-userland-dev-osmc)
     getDepends "${depends[@]}"
 }

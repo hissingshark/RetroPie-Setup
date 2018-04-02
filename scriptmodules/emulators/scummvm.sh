@@ -14,7 +14,7 @@ rp_module_desc="ScummVM"
 rp_module_help="Copy your ScummVM games to $romdir/scummvm"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/scummvm/scummvm/master/COPYING"
 rp_module_section="opt"
-rp_module_flags="!mali"
+rp_module_flags=""
 
 function depends_scummvm() {
     local depends=(libmpeg2-4-dev libogg-dev libvorbis-dev libflac-dev libmad0-dev libpng12-dev libtheora-dev libfaad-dev libfluidsynth-dev libfreetype6-dev zlib1g-dev libjpeg-dev)
@@ -27,7 +27,7 @@ function depends_scummvm() {
 }
 
 function sources_scummvm() {
-    gitPullOrClone "$md_build" https://github.com/scummvm/scummvm.git "branch-1-9"
+    gitPullOrClone "$md_build" https://github.com/scummvm/scummvm.git "branch-2-0"
     if isPlatform "rpi"; then
         applyPatch rpi_enable_scalers.diff <<\_EOF_
 diff --git a/configure b/configure
@@ -89,9 +89,8 @@ function configure_scummvm() {
 game="\$1"
 pushd "$romdir/scummvm" >/dev/null
 $md_inst/bin/scummvm --fullscreen --joystick=0 --extrapath="$md_inst/extra" \$game
-while read line; do
-    id=(\$line);
-    touch "$romdir/scummvm/\$id.svm"
+while read id desc; do
+    echo "\$desc" > "$romdir/scummvm/\$id.svm"
 done < <($md_inst/bin/scummvm --list-targets | tail -n +3)
 popd >/dev/null
 _EOF_

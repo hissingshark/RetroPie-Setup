@@ -105,8 +105,6 @@ function gui_esthemes() {
         'dmmarti maximuspie'
         'dmmarti showcase'
         'dmmarti kidz'
-        'lipebello Retrorama'
-        'lipebello SpaceOddity'
         'rxbrad gbz35'
         'rxbrad gbz35-dark'
         'garaine marioblue'
@@ -126,7 +124,12 @@ function gui_esthemes() {
         'RetroHursty69 license2game'
         'RetroHursty69 comiccrazy'
         'RetroHursty69 snazzy'
+        'RetroHursty69 tributeGoT'
+        'RetroHursty69 tributeSTrek'
+        'RetroHursty69 tributeSWars'        
         'Saracade scv720'
+        'chicueloarcade Chicuelo'
+        'SuperMagicom nostalgic'
     )
     while true; do
         local theme
