@@ -125,11 +125,9 @@ function build_mupen64plus() {
         )
     elif isPlatform "vero4k"; then
         md_ret_require+=(
-            #'mupen64plus-video-gles2rice/projects/unix/mupen64plus-video-rice.so'
+            'mupen64plus-video-gles2rice/projects/unix/mupen64plus-video-rice.so'
             'mupen64plus-video-gles2n64/projects/unix/mupen64plus-video-n64.so'
-            #'mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so'
-            #'mupen64plus-rsp-z64/projects/unix/mupen64plus-rsp-z64.so'
-            #'mupen64plus-rsp-cxd4/projects/unix/mupen64plus-rsp-cxd4.so'
+            'mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so'
         )
     else
         md_ret_require+=(
@@ -176,10 +174,11 @@ function configure_mupen64plus() {
         addEmulator 0 "${md_id}-gles2n64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-n64 %ROM%"
         addEmulator 1 "${md_id}-auto" "n64" "$md_inst/bin/mupen64plus.sh AUTO %ROM%"
     elif isPlatform "vero4k"; then
-        addEmulator 0 "${md_id}-GLideN64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-GLideN64 %ROM%"
-        addEmulator 1 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM%"
-        addEmulator 2 "${md_id}-gles2n64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-n64 %ROM%"
-        addEmulator 3 "${md_id}-auto" "n64" "$md_inst/bin/mupen64plus.sh AUTO %ROM%"
+        addEmulator 0 "${md_id}-gles2n64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-n64 %ROM%"
+        addEmulator 1 "${md_id}-GLideN64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-GLideN64 %ROM%"
+        addEmulator 2 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM%"
+        addEmulator 3 "${md_id}-gles2rice$name" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-rice %ROM%"
+        addEmulator 4 "${md_id}-auto" "n64" "$md_inst/bin/mupen64plus.sh AUTO %ROM%"
     else
         addEmulator 0 "${md_id}-GLideN64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-GLideN64 %ROM%"
         addEmulator 1 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM%"
@@ -251,7 +250,7 @@ function configure_mupen64plus() {
         addAutoConf mupen64plus_audio 1
         addAutoConf mupen64plus_compatibility_check 1
     else
-        addAutoConf mupen64plus_audio 0
+        addAutoConf mupen64plus_audio 1
         addAutoConf mupen64plus_compatibility_check 0
     fi
 
