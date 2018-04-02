@@ -61,8 +61,12 @@ function sources_sdl2() {
 function build_sdl2() {
     cd "$(get_pkg_ver_sdl2)"
 
-    # remove harmful (mesa) and un-needed (X11) dependancies from debian package control
-    isPlatform "vero4k" && sed -i '/^\s*lib.*x\|mesa/ d' ./debian/control
+    if isPlatform "vero4k"; then
+        # remove harmful (mesa) and un-needed (X11) dependancies from debian package control
+        sed -i '/^\s*lib.*x\|mesa/ d' ./debian/control
+        # disable vulkan video support
+        sed -i 's/confflags =/confflags = --disable-video-vulkan/' ./debian/rules
+    fi
 
     dpkg-buildpackage
     md_ret_require="$md_build/libsdl2-dev_$(get_pkg_ver_sdl2)_$(get_arch_sdl2).deb"
