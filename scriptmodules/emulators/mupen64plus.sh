@@ -42,9 +42,8 @@ function sources_mupen64plus() {
     elif isPlatform "vero4k"; then
         repos+=(
             'ricrpi video-gles2n64'
-            #'mupen64plus video-glide64mk2'
-            #'mupen64plus rsp-cxd4'
-            #'mupen64plus rsp-z64'
+            'mupen64plus video-glide64mk2'
+            'ricrpi video-gles2rice pandora-backport'
         )
     else
         repos+=(
