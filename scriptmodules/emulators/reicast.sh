@@ -25,9 +25,8 @@ function sources_reicast() {
     if isPlatform "x11"; then
         gitPullOrClone "$md_build" https://github.com/reicast/reicast-emulator.git
     elif isPlatform "vero4k"; then
-        # go to upstream and revert the rpi/vero4k killing bug
-        gitPullOrClone "$md_build" https://github.com/reicast/reicast-emulator.git
-        git revert 6ae93b31
+        # use hissingshark repo to circumvent rpi3/vero4k killing bug
+        gitPullOrClone "$md_build" https://github.com/hissingshark/reicast-emulator.git vero4k
     else
         gitPullOrClone "$md_build" https://github.com/RetroPie/reicast-emulator.git retropie
     fi
