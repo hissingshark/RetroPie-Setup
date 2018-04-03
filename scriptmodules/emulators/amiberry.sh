@@ -20,6 +20,9 @@ function depends_amiberry() {
     local depends=(libpng12-dev libmpeg2-4-dev zlib1g-dev)
     if ! isPlatform "rpi" || isPlatform "kms"; then
         depends+=(libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev)
+    elif isPlatform "vero4k"; then
+        depends=(libpng-dev libmpeg2-4-dev zlib1g-dev libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libmpg123-dev libxml2-dev libflac-dev)   
+        return
     fi
 
     depends_uae4arm "${depends[@]}"
