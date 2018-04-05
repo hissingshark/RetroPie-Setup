@@ -65,7 +65,7 @@ function build_sdl2() {
         # remove harmful (mesa) and un-needed (X11) dependancies from debian package control
         sed -i '/^\s*lib.*x\|mesa/ d' ./debian/control
         # disable vulkan and X11 video support
-        sed -i 's/confflags =/confflags = --disable-video-vulkan --disable-video-x11 \\\n' ./debian/rules
+        sed -i 's/confflags =/confflags = --disable-video-vulkan --disable-video-x11 \\\n/' ./debian/rules
     fi
 
     dpkg-buildpackage
