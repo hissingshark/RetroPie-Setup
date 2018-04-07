@@ -16,7 +16,11 @@ rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/pcsx_rearmed/
 rp_module_section="main"
 
 function depends_lr-pcsx-rearmed() {
-    getDepends libpng12-dev libx11-dev
+    if isPlatform "vero4k"; then
+        getDepends libpng-dev
+    else
+        getDepends libpng12-dev libx11-dev
+    fi
 }
 
 function sources_lr-pcsx-rearmed() {
